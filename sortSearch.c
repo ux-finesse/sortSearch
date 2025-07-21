@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "include/input_utils.h"
 
 
 int compareIntergers(const void *a, const void *b);
+
 int readIntergers(const char *prompt);
+
 void printArray(const int *arr, int size);
 
 
@@ -46,7 +49,9 @@ int main() {
 int compareIntergers(const void *a, const void *b) {
     int int_a = *(const int *)a;
     int int_b = *(const int *)b;
-    return (int_a > int_b) - (int_a < int_b);  // avoids overflow
+
+    // Avoiding overflow
+    return (int_a > int_b) - (int_a < int_b);
 }
 
 // Function to safely read an integer from input
@@ -55,7 +60,7 @@ int readIntergers(const char *prompt) {
     printf("%s", prompt);
     while (scanf("%d", &value) != 1) {
         printf("Invalid input. Try again: ");
-        while (getchar() != '\n'); // flush stdin
+        while (getchar() != '\n');
     }
     return value;
 }
